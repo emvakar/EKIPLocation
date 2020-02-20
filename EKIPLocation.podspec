@@ -29,7 +29,7 @@ Pod::Spec.new do |s|
     
     # 9
     s.resources = "Sources/EKIPLocation/**/*.{png,jpeg,jpg,storyboard,xib}"
-    s.resource_bundles = {
-        'DevHelperAssets' => ['Sources/EKIPLocation/**/*.xcassets']
-    }
+#    s.resource_bundles = {
+#        'DevHelperAssets' => ['Sources/EKIPLocation/**/*.xcassets']
+#    }
 end
