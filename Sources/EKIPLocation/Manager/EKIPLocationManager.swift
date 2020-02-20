@@ -21,15 +21,25 @@ public final class EKIPLocationManager {
     private var currentPlace: EKPlaceModel?
 
     public static let shared = EKIPLocationManager()
-    
-    private var session = URLSession.shared
+
+    private var session: URLSession?
 }
 
 extension EKIPLocationManager: EKIPLocationManagerProtocol {
 
     public func fetchLocation(_ completionHandler: @escaping (EKPlaceModel?) -> Void) {
-        guard let url = self.url else { return }
-        self.session.getLocation(with: url) { (model, response, error) in
+        guard let url = self.url, let session = self.session else {
+
+            let configuration = URLSessionConfiguration.default
+            configuration.timeoutIntervalForRequest = TimeInterval(3)
+            configuration.timeoutIntervalForResource = TimeInterval(3)
+            let session = URLSession(configuration: configuration)
+            self.session = session
+            self.fetchLocation(completionHandler)
+            return
+        }
+
+        session.getLocation(with: url) { (model, response, error) in
             self.currentPlace = model
             completionHandler(model)
         }
