@@ -8,30 +8,24 @@
 
 import Foundation
 
-public protocol EKIPLocationManagerProtocol {
+public final class EKIPLocation {
 
-    func fetchLocation(_ completionHandler: @escaping (EKPlaceModel?) -> Void)
-    func getCurrentLocation() -> EKPlaceModel?
-    
-}
-
-public final class EKIPLocationManager {
+    public static let shared = EKIPLocation()
 
     private let url = URL(string: "http://ip-api.com/json")
-
-    private var currentPlace: EKPlaceModel?
-
-    public static let shared = EKIPLocationManager()
-
     private var session: URLSession?
-    
+
+    private init() { }
+
 }
 
-extension EKIPLocationManager: EKIPLocationManagerProtocol {
+// MARK: - Public
+
+extension EKIPLocation {
 
     public func fetchLocation(_ completionHandler: @escaping (EKPlaceModel?) -> Void) {
-        guard let url = url, let session = session else {
 
+        guard let url = url, let session = session else {
             let configuration = URLSessionConfiguration.default
             configuration.timeoutIntervalForRequest = TimeInterval(3)
             configuration.timeoutIntervalForResource = TimeInterval(3)
@@ -42,12 +36,8 @@ extension EKIPLocationManager: EKIPLocationManagerProtocol {
         }
 
         session.getLocation(with: url) { (model, response, error) in
-            self.currentPlace = model
             completionHandler(model)
         }
-    }
 
-    public func getCurrentLocation() -> EKPlaceModel? {
-        return currentPlace
     }
 }

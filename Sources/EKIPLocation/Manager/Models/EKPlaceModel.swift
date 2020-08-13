@@ -8,8 +8,10 @@
 
 import Foundation
 
-// MARK: - IPPLaceModel
+// MARK: - PLaceModel
+
 public struct EKPlaceModel {
+    
     public var status: String?
     public var country: String?
     public var countryCode: String?
@@ -22,6 +24,6 @@ public struct EKPlaceModel {
     public var timezone: String?
     public var isp: String?
     public var org: String?
-    public var ipPlaceJSONModelAs: String?
     public var query: String?
+    
 }

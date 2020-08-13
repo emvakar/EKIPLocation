@@ -9,6 +9,7 @@
 import Foundation
 
 // MARK: - IPPlaceJSONModel
+
 struct IPPlaceJSONModel: Codable {
 
     var status: String?
@@ -23,7 +24,6 @@ struct IPPlaceJSONModel: Codable {
     var timezone: String?
     var isp: String?
     var org: String?
-    var ipPlaceJSONModelAs: String?
     var query: String?
 
     enum CodingKeys: String, CodingKey {
@@ -39,26 +39,25 @@ struct IPPlaceJSONModel: Codable {
         case timezone
         case isp
         case org
-        case ipPlaceJSONModelAs = "as"
         case query
     }
 
     func convert() -> EKPlaceModel {
         var model = EKPlaceModel()
-        model.status = self.status
-        model.country = self.country
-        model.countryCode = self.countryCode
-        model.region = self.region
-        model.regionName = self.regionName
-        model.city = self.city
-        model.zip = self.zip
-        model.lat = self.lat
-        model.lon = self.lon
-        model.timezone = self.timezone
-        model.isp = self.isp
-        model.org = self.org
-        model.ipPlaceJSONModelAs = self.ipPlaceJSONModelAs
-        model.query = self.query
+        
+        model.status = status
+        model.country = country
+        model.countryCode = countryCode
+        model.region = region
+        model.regionName = regionName
+        model.city = city
+        model.zip = zip
+        model.lat = lat
+        model.lon = lon
+        model.timezone = timezone
+        model.isp = isp
+        model.org = org
+        model.query = query
         
         return model
 
