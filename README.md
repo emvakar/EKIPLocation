@@ -36,7 +36,7 @@ Empty setup with test parameters simple:
 
 import EKIPLocation
 
-EKIPLocationManager.shared.fetchLocation { (location) in
+EKIPLocation.shared.fetchLocation { (location) in
     print(location)
 }
 
