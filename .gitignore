@@ -1,4 +1,3 @@
-
 # Created by https://www.gitignore.io/api/swift,xcode,Cobjective-c,osx
 
 #!! ERROR: cobjective-c is undefined. Use list command to see defined gitignore types !!#
@@ -35,6 +34,8 @@ Temporary Items
 #
 # gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
 
+*.xcodeproj/
+
 ## Build generated
 build/
 DerivedData/
@@ -64,15 +65,14 @@ xcuserdata/
 ## Playgrounds
 timeline.xctimeline
 playground.xcworkspace
-*.xcworkspace
-Podfile.lock
 
 # Swift Package Manager
 #
 # Add this line if you want to avoid checking in source code from Swift Package Manager dependencies.
-# Packages/
-# Package.pins
+Packages/
+Package.pins
 .build/
+.swiftpm/
 
 # CocoaPods - Refactored to standalone file
 

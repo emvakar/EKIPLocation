@@ -12,6 +12,7 @@ public protocol EKIPLocationManagerProtocol {
 
     func fetchLocation(_ completionHandler: @escaping (EKPlaceModel?) -> Void)
     func getCurrentLocation() -> EKPlaceModel?
+    
 }
 
 public final class EKIPLocationManager {
@@ -23,19 +24,20 @@ public final class EKIPLocationManager {
     public static let shared = EKIPLocationManager()
 
     private var session: URLSession?
+    
 }
 
 extension EKIPLocationManager: EKIPLocationManagerProtocol {
 
     public func fetchLocation(_ completionHandler: @escaping (EKPlaceModel?) -> Void) {
-        guard let url = self.url, let session = self.session else {
+        guard let url = url, let session = session else {
 
             let configuration = URLSessionConfiguration.default
             configuration.timeoutIntervalForRequest = TimeInterval(3)
             configuration.timeoutIntervalForResource = TimeInterval(3)
             let session = URLSession(configuration: configuration)
             self.session = session
-            self.fetchLocation(completionHandler)
+            fetchLocation(completionHandler)
             return
         }
 
@@ -46,6 +48,6 @@ extension EKIPLocationManager: EKIPLocationManagerProtocol {
     }
 
     public func getCurrentLocation() -> EKPlaceModel? {
-        return self.currentPlace
+        return currentPlace
     }
 }
